@@ -23,4 +23,11 @@ class CommentManager extends Manager
 
         return $affectedLines;
     }
+
+    public function signalComment()
+    {
+        $db = $this->dbConnect();
+        $db-> exec('UPDATE comments SET reported = 1');
+
+    }
 }
