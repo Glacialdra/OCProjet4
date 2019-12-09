@@ -32,4 +32,29 @@ class CommentManager extends Manager
 
         return $commentSignaled;
     }
+
+    public function getReported()
+    {
+        $db = $this->dbConnect();
+        $badComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC');
+        $badComments->execute(array());
+
+        return $badComments;
+    }
+
+    public function resetComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $request = $db->prepare('UPDATE comments SET reported = 0 WHERE id=?');
+        $commentreset = $request->execute([$commentId]);
+
+        return $commentreset;
+    }
+
+    public function deleteComment($commentId)
+    {
+        $db = $this->dbConnect();
+        $request = $db->prepare('DELETE FROM comments WHERE id=?');
+        $commentreset = $request->execute([$commentId]);
+    }
 }

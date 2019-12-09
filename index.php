@@ -1,5 +1,6 @@
 <?php
 require('controller/frontend.php');
+require('controller/backend.php');
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'listPosts') {
@@ -29,6 +30,23 @@ if (isset($_GET['action'])) {
     elseif ($_GET['action'] == 'signalComment') {
         if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
             reportComment($_GET['commentId']);
+        } else {
+            echo 'erreur pas de commentaire trouvé';
+        }
+    }
+    elseif ($_GET['action'] == 'adminComments') {
+        listReported();
+    }
+    elseif ($_GET['action'] == 'valider') {
+        if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+            validate($_GET['commentId']);
+        } else {
+            echo 'erreur pas de commentaire trouvé';
+        }
+    }
+    elseif ($_GET['action'] == 'supprimer') {
+        if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+            deleteBadComment($_GET['commentId']);
         } else {
             echo 'erreur pas de commentaire trouvé';
         }

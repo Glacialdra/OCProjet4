@@ -42,3 +42,4 @@ function reportComment($commentId)
     $signaledComment = $commentManager->signalComment($commentId);
     require('view/frontend/signal.php');
 }
+
