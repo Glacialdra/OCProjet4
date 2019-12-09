@@ -26,6 +26,13 @@ if (isset($_GET['action'])) {
             echo 'Erreur : aucun identifiant de billet envoyé';
         }
     }
+    elseif ($_GET['action'] == 'signalComment') {
+        if (isset($_GET['commentId']) && $_GET['commentId'] > 0) {
+            reportComment($_GET['commentId']);
+        } else {
+            echo 'erreur pas de commentaire trouvé';
+        }
+    }
 }
 else {
     listPosts();

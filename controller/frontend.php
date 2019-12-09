@@ -19,7 +19,6 @@ function post()
 
     $post = $postManager->getPost($_GET['id']);
     $comments = $commentManager->getComments($_GET['id']);
-
     require('view/frontend/postView.php');
 }
 
@@ -35,4 +34,11 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+
+function reportComment($commentId)
+{
+    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
+    $signaledComment = $commentManager->signalComment($commentId);
+    require('view/frontend/signal.php');
 }

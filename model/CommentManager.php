@@ -24,10 +24,12 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function signalComment()
+    public function signalComment($commentId)
     {
         $db = $this->dbConnect();
-        $db-> exec('UPDATE comments SET reported = 1');
+        $request = $db->prepare('UPDATE comments SET reported = 1 WHERE id=?');
+        $commentSignaled = $request->execute([$commentId]);
 
+        return $commentSignaled;
     }
 }

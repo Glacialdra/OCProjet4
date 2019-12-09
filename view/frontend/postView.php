@@ -31,16 +31,13 @@
     </div>
 </form>
 
-<?php
-while ($comment = $comments->fetch())
-{
-?>
+<?php while ($comment = $comments->fetch()): ?>
     <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
-    <form action="signal.php" method="post"><p><input type="submit" value="Signaler" /></p></form>
-<?php
-}
-?>
+    <p><a href="index.php?action=signalComment&amp;commentId=<?= $comment['id'] ?>">Signaler</a></p>
+    <!--<form action="view/frontend/signal.php" method="post"><p><input type="submit" value="Signaler" /></p></form>-->
+<?php endwhile; ?>
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require('template.php'); ?>
