@@ -9,7 +9,7 @@ class CommentManager extends Manager
     public function getComments($postId)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, author, comment, reported, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
         $comments->execute(array($postId));
 
         return $comments;
@@ -24,7 +24,7 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function signalComment($commentId)
+    public function signalComment(int $commentId)
     {
         $db = $this->dbConnect();
         $request = $db->prepare('UPDATE comments SET reported = 1 WHERE id=?');
@@ -36,7 +36,7 @@ class CommentManager extends Manager
     public function getReported()
     {
         $db = $this->dbConnect();
-        $badComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC');
+        $badComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC');
         $badComments->execute(array());
 
         return $badComments;

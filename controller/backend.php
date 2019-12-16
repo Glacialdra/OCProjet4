@@ -2,10 +2,11 @@
 
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+use \OpenClassrooms\Blog\Model\CommentManager;
 
 function listReported()
 {
-    $commentManager = new \OpenClassrooms\Blog\Model\CommentManager();
+    $commentManager = new CommentManager();
     $listReportedComments = $commentManager->getReported();
     require('view/backend/listReportedComments.php');
 }

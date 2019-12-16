@@ -1,8 +1,8 @@
+<?php $title = 'Mon blog'; ?>
 <h1>Commentaires signalés :</h1>
-<?php
-while ($badComment = $listReportedComments->fetch())
-{
-?>
+
+    <?php while ($badComment = $listReportedComments->fetch()): ?>
+   
     <div class="badComments">
         <h3>
             <?= htmlspecialchars($badComment['author']) ?>
@@ -17,10 +17,8 @@ while ($badComment = $listReportedComments->fetch())
         </p>
         
     </div>
-<?php
-}
-$listReportedComments->closeCursor();
-?>
+    <?php endwhile; ?>
+<?php $listReportedComments->closeCursor(); ?>
 <?php $content = ob_get_clean(); ?>
 <p><a href="index.php">Retour à la liste des billets</a></p>
 <?php require('view\frontend\template.php'); ?>
