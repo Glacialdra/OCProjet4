@@ -1,0 +1,76 @@
+.header {
+    background-image: url("../images/mountain.png");
+    background-color: #cccccc;
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+
+  .header-text{
+    font-size: 50px;
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+  }
+
+.row-new {
+    display: flex;
+    flex-wrap: wrap;
+}
+h2 {
+    color: black;
+    text-align: center;
+    padding-top: 5%;
+    
+}
+nav {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.navlink {
+    color: white !important;
+    margin-right: 15%;
+}
+
+ul {
+    margin-left: auto;
+}
+
+li {
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+.comment-container{
+    border-bottom: 1px solid black;
+}
+
+img {
+    max-width: 40%;
+    height: auto;
+}
+
+.icon {
+    max-width: 10%;
+    height: auto;
+}
+
+h1, h3 {
+    text-align: center !important;
+    margin-top: 5%;
+}
+
+p {
+    margin-top: auto;
+}
+
+.id-form {
+    margin: 2%;
+}
+

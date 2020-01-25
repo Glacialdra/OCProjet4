@@ -1,6 +1,6 @@
 <?php
 
-namespace OpenClassrooms\Blog\Model;
+namespace App\Model;
 
 require_once("model/Manager.php");
 
@@ -9,11 +9,11 @@ class CommentManager extends Manager
     public function getComments($postId)
     {
         $db = $this->dbConnect();
-        $comments = $db->prepare('SELECT id, author, comment, reported, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+        $comments = $db->prepare('SELECT id, author, comment, reported, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE post_id = ? ORDER BY comment_date ASC');
         $comments->execute(array($postId));
 
         return $comments;
-    }
+    }      
 
     public function postComment($postId, $author, $comment)
     {
@@ -36,7 +36,7 @@ class CommentManager extends Manager
     public function getReported()
     {
         $db = $this->dbConnect();
-        $badComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date DESC');
+        $badComments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, \'%d/%m/%Y\') AS comment_date_fr FROM comments WHERE reported = 1 ORDER BY comment_date ASC');
         $badComments->execute(array());
 
         return $badComments;

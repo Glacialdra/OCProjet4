@@ -1,20 +1,22 @@
-<?php $title = 'Mon blog'; ?>
+<?php $title = 'Liste des chapitres'; ?>
 
 <?php ob_start(); ?>
-<h1>Mon super blog !</h1>
-<p>Derniers billets du blog :</p>
+<div class="container">
+<h1 class="text-center">Chapitres</h1>
+
 
 <?php while ($data = $posts->fetch()): ?>
-    <div class="news">
+    
         <h3>
-        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= htmlspecialchars($data['title']) ?></a>
-            <em>le <?= $data['creation_date_fr'] ?></em>
+        <a href="index.php?action=post&amp;id=<?= $data['id'] ?>"><?= $data['title'] ?></a>
+            
         </h3>
         <p>
-            <?= nl2br(htmlspecialchars($data['content'])) ?>
+            <?=  $data['content_short'] ?>...
         </p>
-    </div>
+    
 <?php endwhile; ?>
+</div>
 <?php $posts->closeCursor(); ?>
 <?php $content = ob_get_clean(); ?>
 
