@@ -8,7 +8,7 @@ if (isset($_SESSION['pseudo']))
 <form action="index.php?action=updateForm&amp;id=<?= $_GET['id'] ?>" method="post">
     <div>
         <label for="titleupdate">Titre</label><br />
-        <input type="text" id="titleupdate" name="title" value="<?=$post['title'] ?>">
+        <input type="text" id="titleupdate" name="titleupdate" value="<?=$post['title'] ?>">
     </div>
     <div>
         <label for="contentupdate">Texte</label><br />

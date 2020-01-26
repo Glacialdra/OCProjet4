@@ -87,7 +87,7 @@ if (isset($_GET['action'])) {
         chapterForm();
     }
     elseif ($_GET['action'] == 'createPost') {
-       if ($_POST['title'] != "" && $_POST['content'] != "")
+       if (isset($_POST['title']) && isset($_POST['content']) && $_POST['title'] != "" && $_POST['content'] != "")
         {
         createPost($_POST['title'], $_POST['content']);
        }
@@ -110,8 +110,8 @@ if (isset($_GET['action'])) {
         }
     }
     elseif ($_GET['action'] == 'updateForm') {
-        if (isset($_GET['id']) && isset($_POST['title']) && isset($_POST['content']) && $_GET['id'] > 0) {
-            updateChapter($_GET['id'], $_POST['title'], $_POST['content']);
+        if (isset($_GET['id']) && isset($_POST['titleupdate']) && isset($_POST['contentupdate']) && $_GET['id'] > 0) {
+            updateChapter($_GET['id'], $_POST['titleupdate'], $_POST['contentupdate']);
         }
         else {
             echo 'Erreur : manque titre, contenu ou identifiant du billet';
