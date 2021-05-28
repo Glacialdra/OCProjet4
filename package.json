@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "tinymce": "^5.1.1"
+    "tinymce": "^5.7.1"
   },
   "devDependencies": {},
   "scripts": {
